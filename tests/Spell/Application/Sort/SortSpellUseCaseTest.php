@@ -32,4 +32,18 @@ final class SortSpellUseCaseTest extends TestCase
         $this->assertEmpty($herbsBag->items());
         $this->assertEquals([$gold], $metalsBag->items());
     }
+
+    /** @test */
+    public function shouldSaveItemInTheBackpackIfItemNotBelongToABag(): void
+    {
+        $user = new User('durance');
+        $bag = new Bag(Category::createHerbs());
+        $iron = new Item('gold', Category::createMetals());
+        $user->pickUp($iron);
+
+        (new SortSpellUseCase())->__invoke($user);
+
+        $this->assertEmpty($bag->items());
+        $this->assertEquals([$iron], $user->backpack()->items());
+    }
 }

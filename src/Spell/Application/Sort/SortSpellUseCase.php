@@ -30,6 +30,10 @@ final class SortSpellUseCase
         foreach ($user->bags() as $bag) {
             $bag->setItems($this->getItemsForCategory($bag->category(), 4));
         }
+
+        foreach ($this->items as $item) {
+            $user->pickUp($item);
+        }
     }
 
     private function fill(Luggage $luggage): void
@@ -46,6 +50,7 @@ final class SortSpellUseCase
         $otherItems = [];
 
         foreach ($this->items as $item) {
+            /* @phpstan-ignore-next-line */
             if (null !== $item->category() && $item->category()->equals($category) && count($itemsOfCategory) <= $limit) {
                 $itemsOfCategory[] = $item;
             } else {
