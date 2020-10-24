@@ -25,13 +25,8 @@ final class SortSpellUseCase
     {
         $this->fillLuggage($user);
         $this->sortItems();
-        foreach ($user->bags() as $bag) {
-            $bag->setItems($this->getItemsForCategory($bag->category(), 4));
-        }
-
-        foreach ($this->items as $item) {
-            $user->pickUp($item);
-        }
+        $this->fillBagsWithCategorizedItems($user);
+        $this->fillRestOfItems($user);
     }
 
     private function fillLuggage(User $user): void
@@ -77,5 +72,19 @@ final class SortSpellUseCase
         $this->items = $otherItems;
 
         return $itemsOfCategory;
+    }
+
+    private function fillBagsWithCategorizedItems(User $user): void
+    {
+        foreach ($user->bags() as $bag) {
+            $bag->setItems($this->getItemsForCategory($bag->category(), 4));
+        }
+    }
+
+    private function fillRestOfItems(User $user): void
+    {
+        foreach ($this->items as $item) {
+            $user->pickUp($item);
+        }
     }
 }

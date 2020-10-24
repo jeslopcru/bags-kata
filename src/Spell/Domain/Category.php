@@ -28,7 +28,7 @@ final class Category
         return $this->name() === $other->name();
     }
 
-    public function name(): string
+    private function name(): string
     {
         return $this->name;
     }

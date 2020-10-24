@@ -34,6 +34,6 @@
         "fixer": "php-cs-fixer fix",
         "phpstan": "phpstan analyse -c .phpstan.neon --debug --level 8 --memory-limit=1G src tests",
         "test": "phpunit",
-        "test-mutation": "infection --threads=4 -s --min-msi=70 --only-covered --log-verbosity=all"
+        "test-mutation": "infection --threads=4 -s --only-covered --log-verbosity=all"
     }
 }

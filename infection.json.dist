@@ -1,8 +1,7 @@
 {
     "source": {
         "directories": [
-            "src",
-            "apps"
+            "src"
         ],
         "excludes": [
             "apps/Console/bin/index.php"

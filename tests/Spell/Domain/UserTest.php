@@ -33,11 +33,14 @@ final class UserTest extends TestCase
     /** @test */
     public function shouldHaveMaximumOf4Bags(): void
     {
-        $this->expectException(MaxBagsExceed::class);
         $user = new User('aUser');
-        for ($i = 0; $i < 6; ++$i) {
+        for ($i = 0; $i < 4; $i++) {
             $user->addBag(new Bag());
         }
+        $this->assertCount(4,$user->bags());
+
+        $this->expectException(MaxBagsExceed::class);
+        $user->addBag(new Bag());
     }
 
     /** @test */
