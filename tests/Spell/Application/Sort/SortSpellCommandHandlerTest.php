@@ -5,9 +5,9 @@ declare(strict_types = 1);
 namespace Example\Tests\Spell\Application\Sort;
 
 use Example\Spell\Application\Sort\SortSpellUseCase;
-use Example\Spell\Domain\Bag;
 use Example\Spell\Domain\Category;
 use Example\Spell\Domain\Item;
+use Example\Spell\Domain\Luggage\Bag;
 use Example\Spell\Domain\User;
 use PHPUnit\Framework\TestCase;
 

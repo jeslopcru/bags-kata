@@ -2,10 +2,11 @@
 
 declare(strict_types = 1);
 
-namespace Example\Tests\Spell\Domain;
+namespace Example\Tests\Spell\Domain\Luggage;
 
-use Example\Spell\Domain\Backpack;
-use Example\Spell\Domain\FullCapacityExceeded;
+use Example\Spell\Domain\Luggage\Backpack;
+use Example\Spell\Domain\Luggage\Exceptions\FullCapacityExceeded;
+use Example\Tests\Spell\Domain\ItemMother;
 use PHPUnit\Framework\TestCase;
 
 final class BackpackTest extends TestCase

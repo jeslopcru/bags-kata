@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Example\Spell\Domain;
 
+use Example\Spell\Domain\Luggage\Backpack;
+
 final class User
 {
     private string $userId;
