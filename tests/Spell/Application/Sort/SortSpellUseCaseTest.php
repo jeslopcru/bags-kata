@@ -11,7 +11,7 @@ use Example\Spell\Domain\Luggage\Bag;
 use Example\Spell\Domain\User;
 use PHPUnit\Framework\TestCase;
 
-final class SortSpellCommandHandlerTest extends TestCase
+final class SortSpellUseCaseTest extends TestCase
 {
     /** @test */
     public function moveItemsFromBackpacksToCategoryItemBag(): void
@@ -19,11 +19,15 @@ final class SortSpellCommandHandlerTest extends TestCase
         $herbsBag = new Bag(Category::createHerbs());
         $metalsBag = new Bag(Category::createMetals());
         $gold = new Item('gold', Category::createMetals());
-        $durance = new User('durance');
+        $user = new User('durance');
+        $user->addBag($herbsBag);
+        $user->addBag($metalsBag);
 
-        (new SortSpellUseCase())->__invoke($durance);
+        $user->pickUp($gold);
 
-        $this->assertEmpty($durance->backpack()->items());
+        (new SortSpellUseCase())->__invoke($user);
+
+        $this->assertCount(0, $user->backpack()->items());
 
         $this->assertEmpty($herbsBag->items());
         $this->assertEquals([$gold], $metalsBag->items());

@@ -22,4 +22,14 @@ final class Category
     {
         return new self('METALS');
     }
+
+    public function equals(Category $other): bool
+    {
+        return $this->name() === $other->name();
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
 }

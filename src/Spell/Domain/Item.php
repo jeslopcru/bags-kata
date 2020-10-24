@@ -14,4 +14,9 @@ final class Item
         $this->name = $name;
         $this->category = $category;
     }
+
+    public function category(): Category
+    {
+        return $this->category;
+    }
 }

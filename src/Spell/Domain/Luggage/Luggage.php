@@ -34,4 +34,9 @@ abstract class Luggage
     {
         return $this->items;
     }
+
+    public function setItems(array $items): void
+    {
+        $this->items = $items;
+    }
 }
