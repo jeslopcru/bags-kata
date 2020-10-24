@@ -1,0 +1,39 @@
+{
+    "type": "project",
+    "license": "proprietary",
+    "require": {
+        "php": ">=7.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Example\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Example\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "ekino/phpstan-banned-code": "^0.3.1",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "infection/infection": ">= 0.16",
+        "korbeil/phpstan-generic-rules": "^0.2.4",
+        "phpstan/phpstan": "^0.12.18",
+        "phpstan/phpstan-deprecation-rules": "^0.12.2",
+        "phpstan/phpstan-phpunit": "^0.12.7",
+        "phpunit/phpunit": "^9"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "fixer": "php-cs-fixer fix",
+        "phpstan": "phpstan analyse -c .phpstan.neon --debug --level 8 --memory-limit=1G src tests",
+        "test": "phpunit",
+        "test-mutation": "infection --threads=4 -s --min-msi=70 --only-covered --log-verbosity=all"
+    }
+}

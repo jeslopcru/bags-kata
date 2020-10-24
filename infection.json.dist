@@ -1,0 +1,21 @@
+{
+    "source": {
+        "directories": [
+            "src",
+            "apps"
+        ],
+        "excludes": [
+            "apps/Console/bin/index.php"
+        ]
+    },
+   "timeout": 10,
+       "logs": {
+           "text": "var/infection/infection-log.txt",
+           "summary": "var/infection/summary-log.txt",
+           "debug": "var/infection/debug-log.txt"
+       },
+       "tmpDir": "var/infection/temp",
+       "phpUnit": {
+           "configDir": "."
+       }
+}
