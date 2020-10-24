@@ -46,4 +46,25 @@ final class SortSpellUseCaseTest extends TestCase
         $this->assertEmpty($bag->items());
         $this->assertEquals([$iron], $user->backpack()->items());
     }
+
+    /** @test */
+    public function ShouldBeOrderAlphabetically(): void
+    {
+        $gold = new Item('gold', Category::createMetals());
+        $copper = new Item('copper', Category::createMetals());
+        $cherryBlossom = new Item('cherry blossom', Category::createHerbs());
+        $seaweed = new Item('seaweed', Category::createHerbs());
+        $metalBag = new Bag(Category::createMetals());
+        $user = new User('durance');
+        $user->addBag($metalBag);
+        $user->pickUp($gold);
+        $user->pickUp($copper);
+        $user->pickUp($cherryBlossom);
+        $user->pickUp($seaweed);
+
+        (new SortSpellUseCase())->__invoke($user);
+
+        $this->assertEquals([$copper, $gold], $metalBag->items());
+        $this->assertEquals([$cherryBlossom, $seaweed], $user->backpack()->items());
+    }
 }

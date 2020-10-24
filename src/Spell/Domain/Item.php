@@ -19,4 +19,9 @@ final class Item
     {
         return $this->category;
     }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
 }
