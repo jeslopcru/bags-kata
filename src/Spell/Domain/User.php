@@ -6,6 +6,7 @@ namespace Example\Spell\Domain;
 
 use Example\Spell\Domain\Luggage\Backpack;
 use Example\Spell\Domain\Luggage\Bag;
+use Example\Spell\Domain\Luggage\Exceptions\NoSpaceAvailableException;
 use Example\Tests\Spell\Domain\MaxBagsExceed;
 
 final class User
@@ -47,6 +48,10 @@ final class User
         $this->bags[] = $bag;
     }
 
+    /**
+     * @param Item $item
+     * @throws NoSpaceAvailableException
+     */
     public function pickUp(Item $item): void
     {
         try {
@@ -60,6 +65,7 @@ final class User
                 } catch (Luggage\Exceptions\FullCapacityExceeded $e) {
                 }
             }
+            throw new NoSpaceAvailableException();
         }
     }
 

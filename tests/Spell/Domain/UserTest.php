@@ -7,6 +7,7 @@ namespace Example\Tests\Spell\Domain;
 use Example\Spell\Domain\Category;
 use Example\Spell\Domain\Item;
 use Example\Spell\Domain\Luggage\Bag;
+use Example\Spell\Domain\Luggage\Exceptions\NoSpaceAvailableException;
 use Example\Spell\Domain\User;
 use PHPUnit\Framework\TestCase;
 
@@ -88,6 +89,17 @@ final class UserTest extends TestCase
         $this->assertCount(8, $user->backpack()->items());
         $this->assertCount(2, $user->bags());
         $this->assertEquals([$item], $aBag->items());
+    }
+
+    /** @test */
+    public function shouldExceptionWhenNoSpaceAvailable(): void
+    {
+        $user = new User('aUser');
+
+        $this->fullBackpack($user);
+        $this->expectException(NoSpaceAvailableException::class);
+
+        $user->pickUp(ItemMother::random());
     }
 
     private function fullBackpack(User $user): void
